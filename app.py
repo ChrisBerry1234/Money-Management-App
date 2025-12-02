@@ -6,7 +6,6 @@ TRANSACTIONS = [
     {'id': 3, 'date': '2023-06-03', 'amount': 300}
 ]
 
-
 app = Flask(__name__)
 
 @app.route("/")
@@ -28,5 +27,13 @@ def add_transactions():
     TRANSACTIONS.append(transaction)
 
     return redirect(url_for("index"))
+
+@app.route("/edit/<int:id>", methods=["GET", "PUT"])
+def edit_transaction(id):
+
+    if request.method == "GET":
+        for transaction in TRANSACTIONS:
+            if id == transaction['id']:
+                return render_template("edittransaction.html", transactions = transaction['id'])
 
 app.run(debug=True)

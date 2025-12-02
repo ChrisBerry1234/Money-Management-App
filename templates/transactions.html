@@ -18,8 +18,8 @@
                     <td> {{ transaction.date }}</td>
                     <td> {{ transaction.amount }}</td>
                     <td class="transaction-actions">
-                        <a href="/edit"> Edit </a>
-                        <a href="/delete"> Delete </a>
+                        <a href="/edit/{{ transaction.id }}"> Edit </a>
+                        <a href="/delete/{{ transaction.id }}"> Delete </a>
                     </td>
                 </tr>
                 {% endfor %}
