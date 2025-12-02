@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<form action="/add_transaction" method="post">
+
+    <label>Date</label>
+    <input type="date">
+
+    <label> Amount </label>
+    <input type="number" name="amount" id="amount" autofocus autocomplete="off" placeholder="Enter Amount in Dollars" required >
+
+    <div class="form-footer">
+        <input class="btn btn-success-add" type="submit" value="Add Transaction">
+        <a class="btn btn-return" href="/"> Go back </a>
+    </div>
+</form>
+
+{% endblock %}

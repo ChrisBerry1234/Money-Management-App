@@ -13,6 +13,7 @@ app = Flask(__name__)
 def index():
     return render_template("transactions.html", data = TRANSACTIONS)
 
-
-
+@app.route("/add_transaction")
+def add():
+    return render_template("addtransaction.html")
 app.run(debug=True)
