@@ -5,14 +5,14 @@
 <form action="/add_transaction" method="post">
 
     <label>Date</label>
-    <input type="date">
+    <input type="date" name="date">
 
     <label> Amount </label>
     <input type="number" name="amount" id="amount" autofocus autocomplete="off" placeholder="Enter Amount in Dollars" required >
 
     <div class="form-footer">
         <input class="btn btn-success-add" type="submit" value="Add Transaction">
-        <a class="btn btn-return" href="/"> Go back </a>
+        <a class="btn btn-return" href="{{url_for('index')}}"> Go back </a>
     </div>
 </form>
 
