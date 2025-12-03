@@ -36,5 +36,29 @@ def edit_transaction(id):
             if id == transaction['id']:
                 return render_template("edittransaction.html", transaction = transaction)
 
+    newdate = request.form.get("new-date")
+    newamount = request.form.get("new-amount")
+
+    for transaction in TRANSACTIONS:
+        if id == transaction['id']:
+            if newamount == str(transaction['amount']) and newdate == transaction['date']:
+                return render_template("nothing.html")
+            else:
+                transaction['date'] = newdate
+                transaction['amount'] = newamount
+                return redirect(url_for("index"))
+
     return redirect(url_for("index"))
-app.run(debug=True)
+
+@app.route("/delete/<int:id>", methods=["POST"])
+def delete_transaction(id):
+        
+    for transaction in TRANSACTIONS:
+        if id == transaction['id']:
+            TRANSACTIONS.remove(transaction)
+            break
+    
+    return redirect(url_for("index"))
+
+if __name__ == "__main__":
+    app.run(debug=True)
