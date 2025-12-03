@@ -28,12 +28,13 @@ def add_transactions():
 
     return redirect(url_for("index"))
 
-@app.route("/edit/<int:id>", methods=["GET", "PUT"])
+@app.route("/edit/<int:id>", methods=["GET", "POST"])
 def edit_transaction(id):
 
     if request.method == "GET":
         for transaction in TRANSACTIONS:
             if id == transaction['id']:
-                return render_template("edittransaction.html", transactions = transaction['id'])
+                return render_template("edittransaction.html", transaction = transaction)
 
+    return redirect(url_for("index"))
 app.run(debug=True)
