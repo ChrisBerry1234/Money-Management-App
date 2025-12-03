@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block body%}
+
+
+    {% for t in matches %}
+       
+        <li> {{ t.amount }} - {{ t.date }}</li>
+    
+    {% endfor %}
+
+{% endblock %}

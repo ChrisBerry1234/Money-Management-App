@@ -1,23 +1,29 @@
 {% extends "layout.html" %}
 
-{% block body%}
+{% block body %}
 
     <h1> Search Transaction </h1>
-    <form class="form-cont" action="{{url_for('search_transactions')}}" method="post">
+    
+        <label> Amount </label>
+        <input type="search" name="maximum"  id="search-max" placeholder="Type Maximum Amount" autocomplete="off" required>
 
-        <label> Maximum Amount </label>
-        <input type="number" name="maximum" placeholder="Type Maximum Amount" autocomplete="off" required>
-
-        <div> </div>
-        <label> Minimum Amount </label>
-        <input type="number" name="minimum" placeholder="Type Minimum Amount" autocomplete="off" required>
-
-        <div> </div>
-        <button type="submit"> Search </button>
-
-    </form>
+        <ul>
+        </ul>
 
     <a href = "{{url_for('search_transactions_by_date')}}"> Search By Date </a>
     <a href="{{url_for('index')}}"> Go back </a>
+
+    <script>
+
+        let search = document.getElementById("search-max");
+        search.addEventListener('input', async function() {
+            let response = await fetch('/search/results?q=' + search.value); //make HTTP request from javascript to our server
+            let transactions = await response.text();
+            document.querySelector('ul').innerHTML = transactions;
+        })
+        //listen to human input and make an http request asking for user input data
+        //wait for response and plug it into html when ready, this allows for async action
+
+    </script>
 
 {% endblock %}

@@ -60,13 +60,26 @@ def delete_transaction(id):
     
     return redirect(url_for("index"))
 
-
-@app.route('/search', methods=["GET", "POST"])
+@app.route('/search')
 def search_transactions():
-    
     return render_template("searchtransaction.html")
 
-@app.route('/searchbydate', methods=["GET", "POST"])
+@app.route('/search/results')
+def search_transactions_results():
+    
+    query = request.args.get("q")
+    
+    if not query:
+        return ""
+    
+    matches=[]
+    for transaction in TRANSACTIONS:
+        if str(transaction['amount']).startswith(query):
+            matches.append(transaction)
+    
+    return render_template("searchresults.html", matches=matches)
+
+@app.route('/search/date')
 def search_transactions_by_date():
 
     return render_template("searchtransactionbydate.html")
