@@ -60,5 +60,16 @@ def delete_transaction(id):
     
     return redirect(url_for("index"))
 
+
+@app.route('/search', methods=["GET", "POST"])
+def search_transactions():
+    
+    return render_template("searchtransaction.html")
+
+@app.route('/searchbydate', methods=["GET", "POST"])
+def search_transactions_by_date():
+
+    return render_template("searchtransactionbydate.html")
+
 if __name__ == "__main__":
     app.run(debug=True)
