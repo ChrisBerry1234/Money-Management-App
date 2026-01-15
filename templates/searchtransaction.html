@@ -16,7 +16,8 @@
     <script>
 
         let search = document.getElementById("search-max");
-        search.addEventListener('input', async function() {
+        search.addEventListener('input', async function() 
+        {
             let response = await fetch('/search/results?q=' + search.value); //make HTTP request from javascript to our server
             let transactions = await response.text();
             document.querySelector('ul').innerHTML = transactions;

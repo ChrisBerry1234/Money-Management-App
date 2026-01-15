@@ -18,10 +18,16 @@ def add_transactions():
     if request.method == "GET":
         return render_template("addtransaction.html")
 
+    date = request.form.get("date")
+    amount = request.form.get("amount")
+
+    if not date or not amount:
+        return {"error": "Please Enter Details "},400
+    
     transaction = {
         'id': len(TRANSACTIONS)+1,
-        'date': request.form.get("date"),
-        'amount': request.form.get("amount"),
+        'date': date,
+        'amount': float(amount),
     }
 
     TRANSACTIONS.append(transaction)
